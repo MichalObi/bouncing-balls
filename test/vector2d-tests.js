@@ -1,5 +1,5 @@
 var assert = require('assert');
-var Vector2D = require('../src/js/vector2d.js').Vector2D;
+var Vector2D = require('../src/js/vector2d.js');
 
 describe('Vector2D', () => {
   describe('empty vector constructor', () => {
@@ -65,16 +65,16 @@ describe('Vector2D', () => {
       assert.equal(new Vector2D(0, -1).tryNormalize().Y, -1); // Y axis negative
     });
   });
-  describe('vector angle ', function() {
-    it('should return the same value because the pairs have same unit vector and all 4 combinations are axis vectors', function() {
+  describe('vector angle ', () => {
+    it('should return the same value because the pairs have same unit vector and all 4 combinations are axis vectors', () => {
       assert.equal(new Vector2D(12, 0).angle(), new Vector2D(17, 0).angle()); // X axis positive
       assert.equal(new Vector2D(-31, 0).angle(), new Vector2D(-4, 0).angle()); // X axis negative
       assert.equal(new Vector2D(0, 12).angle(), new Vector2D(0, 3).angle()); // Y axis positive
       assert.equal(new Vector2D(0, -1).angle(), new Vector2D(0, -45).angle()); // Y axis negative
     });
   });
-  describe('is near zero vector', function() {
-    it('should return true if the abs of the nonzero constant is smaller than NEAR_ZERO', function() {
+  describe('is near zero vector', () => {
+    it('should return true if the abs of the nonzero constant is smaller than NEAR_ZERO', () => {
       assert.equal(new Vector2D(0.009, 0).isNearZero(), true);
       assert.equal(new Vector2D(-0.005, 0).isNearZero(), true);
       assert.equal(new Vector2D(0.02, 0).isNearZero(), false);
@@ -84,5 +84,13 @@ describe('Vector2D', () => {
       assert.equal(new Vector2D(0, 0.01111).isNearZero(), false);
       assert.equal(new Vector2D(0, -0.02).isNearZero(), false);
     });
+  });
+  describe('is vector undefined', () => {
+    assert.equal(new Vector2D(1,2).isUndefined(), false);
+    assert.equal(new Vector2D().isUndefined(), true);
+  });
+  describe('vector opposite', () => {
+    assert.deepEqual(new Vector2D(1, -1), new Vector2D(-1, 1).opposite());
+    assert.deepEqual(new Vector2D(-1, 1), new Vector2D(1, -1).opposite());
   });
 });

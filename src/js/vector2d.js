@@ -121,4 +121,6 @@
     root.Vector2D = Vector2D;
   }
 
+  exports.Vector2D = Vector2D;
+
 }());
